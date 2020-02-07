@@ -1,4 +1,0 @@
-//code 
-public class code {
-
-}
