@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class GroupMInput 
 {
-	int members = 0;
+	//all instance variables must be private..
+	private int members = 0;
 	
 	public static void main(String[] args) 
 	{
