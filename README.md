@@ -1,4 +1,2 @@
 # VLAD
-Download both
-put in same location
-run group.java
+1. Download both // 2. put in same location // 3. run group.java
