@@ -23,8 +23,16 @@ public class Individual {
 		unavailableList = availability;
 	}
 	
-	public Individual(int[] busyAt) {
+	public void setAddBadDate(int[] busyAt) {
 		unavailableList.add(busyAt);
+	}
+	
+	public void setName(String name) {
+		memberName = name;
+	}
+	
+	public void setAvailability(ArrayList<int[]> availability) {
+		unavailableList = availability;
 	}
 	
 	public String getName() {
