@@ -17,6 +17,14 @@ public class Group {
 		members = memberList;
 	}
 	
+	public Group(String gName) {
+		groupName = gName;
+	}
+	
+	public void setMembers(ArrayList<Individual> memberList) {
+		members = memberList;
+	}
+	
 	public void addMember(Individual member) {
 		members.add(member);
 	}
@@ -36,20 +44,20 @@ public class Group {
 	public void checkAvailability(ArrayList<int[]> times) {
 		int numbersOfTimes = times.size();
 		for (int i = 0; i < numbersOfTimes; i++) {
-			for (int index = 0; index < groupAvailability.size(); index++) {
+			int secondNumberOfTimes = groupAvailability.size();
+			for (int index = 0; index < secondNumberOfTimes; index++) {
 				if (times.get(i)[0] == groupAvailability.get(index)[0]) {
-					if (times.get(i)[1] == groupAvailability.get(index)[1] && times.get(i)[2] == groupAvailability.get(index)[2] ) {
+					if ((int) times.get(i)[1] == (int) groupAvailability.get(index)[1] && (int) times.get(i)[2] == (int) groupAvailability.get(index)[2] ) {
 						//do nothing
 					}
-					if (times.get(i)[1] < groupAvailability.get(index)[1] && times.get(i)[2] > groupAvailability.get(index)[1] ) {
+					else if ((int) times.get(i)[1] < (int) groupAvailability.get(index)[1] && (int) times.get(i)[2] > (int) groupAvailability.get(index)[1] ) {
 						groupAvailability.get(index)[1] = times.get(i)[1];
 					}
-					if (times.get(i)[1] < groupAvailability.get(index)[2] && times.get(i)[2] > groupAvailability.get(index)[2] ) {
+					else if ((int) times.get(i)[1] < (int) groupAvailability.get(index)[2] && (int) times.get(i)[2] > (int) groupAvailability.get(index)[2] ) {
 						groupAvailability.get(index)[2] = times.get(i)[2];
 					}
 					else {
 						groupAvailability.add(times.get(i));
-						//fix this, it is not comparing arraylist ints properly?
 
 					}
 				
@@ -124,14 +132,17 @@ public class Group {
 				System.out.println(" ");
 			}
 		}
-		
-		Group newGroup = new Group(name, people);
-		
 		ginput.close();
 		
-		newGroup.setAvailability();
+		Group newGroup = new Group(name);
 		
-		if (newGroup.getGroupUnavailability().size() > 1) {
+		if (!(people.isEmpty())) {
+			newGroup.setMembers(people);
+			newGroup.setAvailability();
+		}
+		
+		
+		if (newGroup.getGroupUnavailability().size() >= 1) {
 			System.out.println(newGroup.toString());
 		}
 	}
