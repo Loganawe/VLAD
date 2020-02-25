@@ -88,19 +88,25 @@ public class Individual {
 		System.out.print("Enter your name: ");
 		String name = input.nextLine();
 		
-		int quit = 0;
-		while (quit != 1) {
-			System.out.print("What day are you unavailable? (enter 10 to quit): ");
-			int day = input.nextInt();
-			if (day == 10) {
-				quit = 1;
+		String quit = "askljgklas";
+		while (!(quit.isEmpty())) {
+			System.out.print("What day are you unavailable? (enter nothing to quit): ");
+			String value = input.nextLine();
+			quit = value;
+			if (quit.isEmpty()) {
+				System.out.println(" ");
+				// do nothing
 			}
 			else {
+				int day = Integer.parseInt(value);
+				
 				System.out.print("Starting at what time?: ");
-				int start = input.nextInt();
+				value = input.nextLine();
+				int start = Integer.parseInt(value);
 				
 				System.out.print("Ending when?: ");
-				int end = input.nextInt();
+				value = input.nextLine();
+				int end = Integer.parseInt(value);
 				
 				System.out.println(" ");
 				

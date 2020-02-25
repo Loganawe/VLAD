@@ -114,31 +114,53 @@ public class Group {
 	
 	public String toString() {
 		String availability = "";
+		String groupMemberNames = "";
 		String returnStatment = "";
 		for (int[] busyAt: groupAvailability) {
+			if (groupAvailability.indexOf(busyAt) == groupAvailability.size() - 1 && groupAvailability.size() > 1) {
+				availability += "and ";
+			}
 			if (busyAt[0] == 1) {
 				availability += "Sunday from " + busyAt[1] + " - " + busyAt[2] + ", ";
 			}
-			if (busyAt[0] == 2) {
+			else if (busyAt[0] == 2) {
 				availability += "Monday from " + busyAt[1] + " - " + busyAt[2] + ", ";
 			}
-			if (busyAt[0] == 3) {
+			else if (busyAt[0] == 3) {
 				availability += "Tuesday from " + busyAt[1] + " - " + busyAt[2] + ", ";
 			}
-			if (busyAt[0] == 4) {
+			else if (busyAt[0] == 4) {
 				availability += "Wednesday from " + busyAt[1] + " - " + busyAt[2] + ", ";
 			}
-			if (busyAt[0] == 5) {
+			else if (busyAt[0] == 5) {
 				availability += "Thursday from " + busyAt[1] + " - " + busyAt[2] + ", ";
 			}
-			if (busyAt[0] == 6) {
+			else if (busyAt[0] == 6) {
 				availability += "Friday from " + busyAt[1] + " - " + busyAt[2] + ", ";
 			}
-			if (busyAt[0] == 7) {
+			else if (busyAt[0] == 7) {
 				availability += "Saturday from " + busyAt[1] + " - " + busyAt[2] + ", ";
 			}
 		}
-		returnStatment = groupName + " is unavailable on " + availability + "please plan around this.";
+		
+		if (members.size() == 1) {
+			groupMemberNames += members.get(0).getName();
+		}
+		else if (members.size() == 2) {
+			groupMemberNames += members.get(0).getName() + " and " + members.get(1).getName();
+		}
+		else {
+			for (Individual person: members) {
+				if (members.indexOf(person) == members.size() - 1) {
+					groupMemberNames += "and " + person.getName();
+				}
+				else {
+					groupMemberNames += person.getName() + ", ";
+				}
+			}
+		}
+		
+		returnStatment = groupName + ", which is composed of member(s) " + groupMemberNames + " is unavailable on " + availability + "please plan around this.";
 		return returnStatment;
 	}
 	
@@ -146,6 +168,14 @@ public class Group {
 		ArrayList<Individual> people = new ArrayList<Individual>();
 		
 		Scanner ginput = new Scanner(System.in);
+		
+		System.out.println("############################################################################");
+		System.out.println("1. Enter your group and member names normally");
+		System.out.println("2. Days are in the form of integers from 1-7 (i.e. 1 = Sunday, 7 = Saturday)");
+		System.out.println("3. Enter your times in 24 hour format (i.e. 2:30 pm = 1430)");
+		System.out.println("############################################################################");
+		System.out.println(" ");
+		System.out.println(" ");
 		
 		System.out.print("Enter your group name: ");
 		String name = ginput.nextLine();
@@ -161,7 +191,7 @@ public class Group {
 				Individual newMember = new Individual();
 				people.add(newMember.setIndividual());
 			}
-			if (!(quit.equals("yes")) && !(quit.isEmpty())) {
+			else if (!(quit.equals("yes")) && !(quit.isEmpty())) {
 				System.out.println("Please enter 'yes', or leave the field blank to exit");
 				System.out.println(" ");
 			}
@@ -177,8 +207,16 @@ public class Group {
 		
 		
 		if (newGroup.getGroupUnavailability().size() >= 1) {
+			String outputText = newGroup.toString();
+			String boarderText = "";
+			int textLength = outputText.length();
+			for (int i = 0; i < textLength; i++) {
+				boarderText += "#";
+			}
 			System.out.println(" ");
-			System.out.println(newGroup.toString());
+			System.out.println(boarderText);
+			System.out.println(outputText);
+			System.out.println(boarderText);
 		}
 	}
 
