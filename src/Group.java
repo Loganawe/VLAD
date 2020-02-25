@@ -41,39 +41,72 @@ public class Group {
 		return new ArrayList<int[]>(groupAvailability);
 	}
 	
+	public boolean checkDayExist(int[] time) {
+		ArrayList<Integer> whichDays = new ArrayList<Integer>();
+		for (int[] index: groupAvailability) {
+			if (time[0] == index[0]) {
+				whichDays.add(time[0]);
+			}
+		}
+		if (whichDays.size() >= 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public void checkAvailability(ArrayList<int[]> times) {
 		int numbersOfTimes = times.size();
 		for (int i = 0; i < numbersOfTimes; i++) {
-			int secondNumberOfTimes = groupAvailability.size();
-			for (int index = 0; index < secondNumberOfTimes; index++) {
-				if (times.get(i)[0] == groupAvailability.get(index)[0]) {
-					if ((int) times.get(i)[1] == (int) groupAvailability.get(index)[1] && (int) times.get(i)[2] == (int) groupAvailability.get(index)[2] ) {
-						//do nothing
-					}
-					else if ((int) times.get(i)[1] < (int) groupAvailability.get(index)[1] && (int) times.get(i)[2] > (int) groupAvailability.get(index)[1] ) {
-						groupAvailability.get(index)[1] = times.get(i)[1];
-					}
-					else if ((int) times.get(i)[1] < (int) groupAvailability.get(index)[2] && (int) times.get(i)[2] > (int) groupAvailability.get(index)[2] ) {
-						groupAvailability.get(index)[2] = times.get(i)[2];
-					}
-					else {
-						groupAvailability.add(times.get(i));
-
-					}
-				
-				}
-				else {
-					groupAvailability.add(times.get(i));
-				}
-			
+			if (groupAvailability.contains(times.get(i))) {
+				// do nothing
+				//System.out.println("Same already exists");
 			}
+			else if (checkDayExist(times.get(i))) {
+				
+				int secondNumberOftimes = groupAvailability.size();
+				for (int index = 0; index < secondNumberOftimes; index++) {
+					
+					if (times.get(i)[0] == groupAvailability.get(index)[0]) {
+						if (times.get(i)[1] <= groupAvailability.get(index)[1] && times.get(i)[2] >= groupAvailability.get(index)[2] ) {
+							groupAvailability.get(index)[1] = times.get(i)[1];
+							groupAvailability.get(index)[2] = times.get(i)[2];
+							//System.out.println("bigger than old");
+						}
+						else if (times.get(i)[1] >= groupAvailability.get(index)[1] && times.get(i)[2] <= groupAvailability.get(index)[2] ) {
+							// do nothing
+							//System.out.println("smaller than old");
+						}
+						else if (times.get(i)[1] < groupAvailability.get(index)[1] && times.get(i)[2] >= groupAvailability.get(index)[1] ) {
+							groupAvailability.get(index)[1] = times.get(i)[1];
+							//System.out.println("starts before, but is during");
+						}
+						else if (times.get(i)[1] <= groupAvailability.get(index)[2] && times.get(i)[2] > groupAvailability.get(index)[2] ) {
+							groupAvailability.get(index)[2] = times.get(i)[2];
+							//System.out.println("ends after, but is during");
+						}
+						else if (times.get(i)[2] < groupAvailability.get(index)[1] || times.get(i)[1] > groupAvailability.get(index)[2] ) {
+							groupAvailability.add(times.get(i));
+							//System.out.println("Same day, but not same or overlapping times");
+						}
+					}
+
+				}
+				
+			}
+			else {
+				groupAvailability.add(times.get(i));
+				//System.out.println("Day doesn't exist");
+			}
+			
+		
+		
 		}
 	}
 	
 	public void setAvailability() {
-		for (int i = 0; i < members.get(0).getUnavailability().size(); i++) {
-			groupAvailability.add(members.get(0).getUnavailability().get(i));
-		}
+		groupAvailability.add(members.get(0).getUnavailability().get(0));
 		for (Individual person: members) {
 			checkAvailability(person.getUnavailability());
 		}
@@ -120,6 +153,7 @@ public class Group {
 		
 		String quit = "fdhasdh";
 		while (!(quit.isEmpty())) {
+			System.out.println(" ");
 			System.out.print("Would you like to add a group member? (enter 'yes', or nothing to quit): ");
 			quit = ginput.nextLine();
 			
@@ -143,6 +177,7 @@ public class Group {
 		
 		
 		if (newGroup.getGroupUnavailability().size() >= 1) {
+			System.out.println(" ");
 			System.out.println(newGroup.toString());
 		}
 	}
