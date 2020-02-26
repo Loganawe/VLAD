@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Schedual {
+public class Schedule {
 
 	List<Integer> busyTimes;
 	int timeFrame;

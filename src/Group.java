@@ -4,14 +4,14 @@ public class Group {
 
 	//Instance Variables
 	ArrayList<Person> memberList = new ArrayList<Person>();
-	Schedual freeSchedual;
+	Schedule freeSchedule;
 	String groupName;
 	
 	//Constructors
-	public Group(String gName, ArrayList<Person> members, Schedual freeSch) {
+	public Group(String gName, ArrayList<Person> members, Schedule freeSch) {
 		groupName = gName;
 		memberList = members;
-		freeSchedual = freeSch;
+		freeSchedule = freeSch;
 	}
 	
 	public Group(String gName, ArrayList<Person> members) {
@@ -40,8 +40,8 @@ public class Group {
 		return groupName;
 	}
 	
-	public Schedual getFreeSchedual() {
-		return freeSchedual;
+	public Schedule getFreeSchedule() {
+		return freeSchedule;
 	}
 }
 
