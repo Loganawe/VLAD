@@ -2,8 +2,7 @@ import java.util.List;
 
 public class Schedule {
 
-	List<Integer> busyTimes;
-	int timeFrame;
+	int[] busyTimes;
 	
 	public void addBusyAuto() {
 		
@@ -14,10 +13,6 @@ public class Schedule {
 	}
 	
 	public void removeBusy() {
-		
-	}
-	
-	public void addTimeFrame() {
 		
 	}
 }
