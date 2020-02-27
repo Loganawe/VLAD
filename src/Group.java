@@ -2,45 +2,51 @@ import java.util.ArrayList;
 
 public class Group {
 
-	//Instance Variables
-	ArrayList<Person> memberList = new ArrayList<Person>();
-	Schedule freeSchedule;
-	String groupName;
-	
-	//Constructors
-	public Group(String gName, ArrayList<Person> members, Schedule freeSch) {
-		groupName = gName;
-		memberList = members;
-		freeSchedule = freeSch;
-	}
-	
-	public Group(String gName, ArrayList<Person> members) {
-		groupName = gName;
-		memberList = members;
-	}
-	
-	public Group(String gName) {
-		groupName = gName;
-	}
+	String groupname;
+	ArrayList<Roles> group = new ArrayList<Roles>();
+	Schedule freesch = new Schedule();
 
-	//Methods
-	public void setMembers(ArrayList<Person> members) {
-		memberList = members;
+	public Group(String gname) {
+		groupname = gname;
+		
+		//default roles of a group
+		group.add(new Roles("Leader","is the leader"));
+		group.add(new Roles("Organizer","is the organizer"));
+		group.add(new Roles("Finisher","is the finisher"));
+		group.add(new Roles("Implementer","is the implementer"));
+		group.add(new Roles("Team Member","is placeholder till person is moved to spesific role"));
 	}
 	
-	public void addMember(Person member) {
-		memberList.add(member);
+	//in-case of group name change
+	public void setGroupName() {
+		
 	}
 	
-	public int getNumberOfMembers() {
-		return memberList.size();
+	//getters for all to display data
+	public String getGroupName() {
+		
 	}
 	
-	public String getName() {
-		return groupName;
+	public ArrayList<Roles> getGroup(){
+		
 	}
 	
-	public Schedule getFreeSchedule() {
-		return freeSchedule;
+	public Schedule getFreeSch() {
+		
+	}
+	
+	//add another non-default role
+	public void addRole() {
+		
+	}
+	
+	//outputs the sync'ed schedule
+	public Schedule sync() {
+		
+	}
+	
+	//moves members from unspesificed to their role teams
+	public void deligate() {
+		
 	}
 }
