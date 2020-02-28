@@ -8,37 +8,45 @@ public class Attribute {
 	int impscore;
 
 	//setters to be used in takeTest()
-	public void setLeaderScore(){
-		
+	public void setLeaderScore(int point)
+	{
+		leaderscore = leaderscore + point;
 	}
 	
-	public void setOrganScore() {
-		
+	public void setOrganScore(int point) 	
+	{
+		organscore = organscore + point;
 	}
 	
-	public void setFinScore() {
-		
+	public void setFinScore(int point) 
+	{
+		finscore = finscore + point;
 	}
 	
-	public void setImpScore() {
-		
+	public void setImpScore(int point) 
+	{
+		impscore = impscore + point;
 	}
 	
 	//getters to be used in public class Group deligate() and in takeTest()
-	public int getLeaderScore() {
-		
+	public int getLeaderScore() 
+	{
+		return leaderscore;
 	}
 	
-	public int getOrganScore() {
-		
+	public int getOrganScore() 
+	{
+		return organscore;
 	}
 	
-	public int getFinScore() {
-		
+	public int getFinScore() 
+	{
+		return finscore;
 	}
 	
-	public int getImpScore() {
-		
+	public int getImpScore() 
+	{
+		return impscore;
 	}
 	
 	//the test taking code, working in progress questions
@@ -47,7 +55,8 @@ public class Attribute {
 	}
 	
 	//so we can fully run a console only version of the program
-	public String toString() {
+	//public String toString() 
+	//{
 		
-	}
+	//}
 }
