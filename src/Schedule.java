@@ -20,6 +20,14 @@ public class Schedule {
 		
 	}
 	
+	public ArrayList<int[]> getTimes() {
+		return new ArrayList<int[]>(busyTimes);
+	}
+	
+	public void setTimes(ArrayList<int[]> times) {
+		busyTimes = new ArrayList<int[]>(times);
+	}
+	
 	//for console use of program
 	public String toString() {
 		
