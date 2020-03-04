@@ -55,8 +55,8 @@ public class Attribute {
 	}
 	
 	//so we can fully run a console only version of the program
-	//public String toString() 
-	//{
-		
-	//}
+	public String toString() 
+	{
+		return "Ls: "+ leaderscore + " Os: "+ organscore + " Fs: "+ finscore+ " Ims: "+ impscore;
+	}
 }
