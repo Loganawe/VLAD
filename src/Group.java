@@ -40,6 +40,10 @@ public class Group {
 		
 	}
 	
+	public int groupSize() {
+		
+	}
+	
 	//outputs the sync'ed schedule
 	public Schedule sync() {
 		
