@@ -1,3 +1,5 @@
+package notui;
+
 import java.util.ArrayList;
 
 public class Schedule {
@@ -5,6 +7,14 @@ public class Schedule {
 	//Index of the Arraylist is the day and then int array is the times
 	ArrayList<int[]> busyTimes = new ArrayList<int[]>();
 	
+	public Schedule() {
+		
+	}
+	
+	
+	public Schedule(Schedule aSchedule) {
+		
+	}
 	//dont need to add this one yet, we havnt looked at the libary
 	public void addBusyAuto() {
 		
