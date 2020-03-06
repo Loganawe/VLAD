@@ -41,7 +41,12 @@ public class Roles {
 		team.remove(team.indexOf(member));
 	}
 	
-	public int teamSize() {
+	public int getTeamSize() {
 		return team.size();
 	}
+
+
+
+
+
 }

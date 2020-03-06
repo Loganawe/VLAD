@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Group {
 
-	String groupName;
-	ArrayList<Roles> groupRoles = new ArrayList<Roles>();
-	Schedule freeSch = new Schedule();
+	private String groupName;
+	private ArrayList<Roles> groupRoles = new ArrayList<Roles>();
+	private Schedule freeSch = new Schedule();
 
 	public Group(String gName) {
 		defaultRoles();
@@ -36,6 +36,39 @@ public class Group {
 	
 	public Schedule getFreeSch() {
 		return new Schedule(freeSch);
+	}
+	
+	public int getGroupSize() {
+		int numMembers = 0;
+		for (Roles role: groupRoles) {
+			numMembers += role.getTeamSize();
+		}
+		return numMembers;
+	}
+	
+	public ArrayList<ArrayList<String>> getRoleMemberNames () {
+		ArrayList<ArrayList<String>> rolesAndNames = new ArrayList<ArrayList<String>>();
+		for (Roles role: groupRoles) {
+			ArrayList<String> names = new ArrayList<String>();
+			names.add(role.getRoleName());
+			for (Person member: role.getTeam()) {
+				names.add(member.getName());
+			}
+			rolesAndNames.add(names);
+		}
+		
+		return rolesAndNames;
+	}
+	
+	public ArrayList<String> getMemberNames() {
+		ArrayList<String> names = new ArrayList<String>();
+		for (ArrayList<String> roleGroup: getRoleMemberNames()) {
+			for (int i=1; i < roleGroup.size()-1; i++) {
+				names.add(roleGroup.get(i));
+			}
+		}
+		
+		return names;
 	}
 	
 	//add another non-default role
@@ -134,11 +167,69 @@ public class Group {
 		}
 	}
 	
-	//moves members from unspesificed to their role teams
+	
 	public void addRoleMember(Person member, String rName) {
 		groupRoles.get(indexOfRole(rName)).addPerson(member);
 	}
 	public void rmRoleMember(Person member, String rName) {
 		groupRoles.get(indexOfRole(rName)).removeMember(member);
 	}
+
+
+	public String toString() {
+		String availability = "";
+		String groupMemberNames = "";
+		String returnStatment = "";
+		ArrayList<int[]> groupAvailability = new ArrayList<int[]>(freeSch.getTimes());
+		for (int[] busyAt: groupAvailability) {
+			if (groupAvailability.indexOf(busyAt) == groupAvailability.size() - 1 && groupAvailability.size() > 1) {
+				availability += "and ";
+			}
+			if (busyAt[0] == 1) {
+				availability += "Sunday from " + busyAt[1] + " - " + busyAt[2] + ", ";
+			}
+			else if (busyAt[0] == 2) {
+				availability += "Monday from " + busyAt[1] + " - " + busyAt[2] + ", ";
+			}
+			else if (busyAt[0] == 3) {
+				availability += "Tuesday from " + busyAt[1] + " - " + busyAt[2] + ", ";
+			}
+			else if (busyAt[0] == 4) {
+				availability += "Wednesday from " + busyAt[1] + " - " + busyAt[2] + ", ";
+			}
+			else if (busyAt[0] == 5) {
+				availability += "Thursday from " + busyAt[1] + " - " + busyAt[2] + ", ";
+			}
+			else if (busyAt[0] == 6) {
+				availability += "Friday from " + busyAt[1] + " - " + busyAt[2] + ", ";
+			}
+			else if (busyAt[0] == 7) {
+				availability += "Saturday from " + busyAt[1] + " - " + busyAt[2] + ", ";
+			}
+		}
+		
+		if (getGroupSize() == 1) {
+			groupMemberNames += getMemberNames().get(0);
+		}
+		else if (getGroupSize() == 2) {
+			groupMemberNames += getMemberNames().get(0) + " and " + getMemberNames().get(1);
+		}
+		else {
+			for (String person: getMemberNames()) {
+				if (getMemberNames().indexOf(person) == getMemberNames().size() - 1) {
+					groupMemberNames += "and " + person;
+				}
+				else {
+					groupMemberNames += person + ", ";
+				}
+			}
+		}
+		
+		returnStatment = groupName + ", which is composed of member(s) " + groupMemberNames + " is unavailable on " + availability + "please plan around this.";
+		return returnStatment;
+	}
+
+
+
+
 }

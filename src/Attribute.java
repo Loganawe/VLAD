@@ -8,6 +8,14 @@ public class Attribute {
 	int impscore;
 
 	//setters to be used in takeTest()
+	public Attribute() {
+		
+	}
+	
+	public Attribute(Attribute aAttribute) {
+		
+	}
+	
 	public void setLeaderScore(){
 		
 	}
