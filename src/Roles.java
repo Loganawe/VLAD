@@ -37,7 +37,16 @@ public class Roles {
 		team.add(person);
 	}
 	
-	public int teamSize() {
+	public void removeMember(Person member) {
+		team.remove(team.indexOf(member));
+	}
+	
+	public int getTeamSize() {
 		return team.size();
 	}
+
+
+
+
+
 }

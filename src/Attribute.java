@@ -8,9 +8,19 @@ public class Attribute {
 	int impscore;
 
 	//setters to be used in takeTest()
-	public void setLeaderScore(int point)
-	{
+	public void setLeaderScore(int point) {
 		leaderscore = leaderscore + point;
+ }
+	public Attribute() {
+		
+	}
+	
+	public Attribute(Attribute aAttribute) {
+		
+	}
+	
+	public void setLeaderScore(){
+		
 	}
 	
 	public void setOrganScore(int point) 	

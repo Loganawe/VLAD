@@ -1,33 +1,36 @@
 
 public class Person {
 
-	/*basic info no need for role var because the person will already be places in 
-	an arraylist of their role */
-	String name;
-	Schedule Schedule = new Schedule();
-	Attribute attributes = new Attribute();
+	private String name;
+	private Schedule schedule = new Schedule();
+	private Attribute attributes = new Attribute();
 	
-	//person needs a name
-	public Person(String mName) {
-		name = mName;
+	public Person(String aName) {
+		name = aName;
 	}
 	
-	//set for others are in the specific classes so no need for setter in this class
-	public void setName() {
-		
+	public void setName(String aName) {
+		name = aName;
 	}
 	
-	//get for synco() and deliagte() in public class group and name for console use
 	public String getName() {
-		
+		return name;
+	}
+	
+	public void setSchedule(Schedule aSchedule) {
+		schedule = new Schedule(aSchedule);
 	}
 	
 	public Schedule getSchedule() {
-		
+		return new Schedule(schedule);
+	}
+	
+	public void setAttributes(Attribute aAttributes) {
+		attributes = new Attribute(aAttributes);
 	}
 	
 	public Attribute getAttributes() {
-		
+		return new Attribute(attributes);
 	}
 	
 	
