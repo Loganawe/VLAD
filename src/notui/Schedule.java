@@ -40,6 +40,6 @@ public class Schedule {
 	
 	//for console use of program
 	public String toString() {
-		
+		return "Mondays: " + busyTimes<0>;
 	}
 }

@@ -169,6 +169,9 @@ public class Group {
 		}
 	}
 	
+	public void deligate() {
+		
+	}
 	
 	public void addRoleMember(Person member, String rName) {
 		groupRoles.get(indexOfRole(rName)).addPerson(member);

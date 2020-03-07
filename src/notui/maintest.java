@@ -47,19 +47,19 @@ public class maintest {
 						String roledesc = input.nextLine();
 						group.addRole(rolename, roledesc);
 					}
-					else if(command.equals("2")) {
+					if(command.equals("2")) {
 						System.out.println("Enter role name: ");
 						String rolename = input.nextLine();
 						group.removeRole(rolename);
 					}
-					else if(command.equals("3")) {
+					if(command.equals("3")) {
 						System.out.println("Enter person name: ");
 						String name = input.nextLine();
 						Person person = new Person(name);
 						
 						System.out.println("Do you want to add a schedule? (y)/(n) ");
-						String schcommand = input.nextLine();
-						if(schcommand.equals("y")) {
+						String membercommand = input.nextLine();
+						if(membercommand.equals("y")) {
 							Schedule sch = new Schedule();
 							boolean schrunning = true;
 							while(schrunning=true) {
@@ -69,6 +69,7 @@ public class maintest {
 								int starttime = input.nextInt();
 								System.out.print("Enter end time (9am = 900 / 1pm = 1300): ");
 								int endtime = input.nextInt();
+								input.nextLine();
 								int[] busytime = new int[] {day,starttime,endtime};
 								sch.addBusyManual(busytime);
 								System.out.println("Add another time? (y)/(n)");
@@ -78,9 +79,38 @@ public class maintest {
 									person.setSchedule(sch);
 								}
 							}
-						}					
+						}
+						System.out.println("Do you want to add roles? (y)/(n) ");
+						membercommand = input.nextLine();
+						if(membercommand.equals("y")) {
+							Attribute attr = new Attribute();
+							attr.takeTest();
+							person.setAttributes(attr);
+						}
+						group.addRoleMember(person, "Team Member");
 					}
-					else if(answer.equals("8")) {
+					if(answer.equals("4")) {
+						System.out.println("Enter person name: ");
+						String name = input.nextLine();
+					}
+					if(answer.equals("5")) {
+						System.out.println(group.getGroupName());
+						for(Roles role:group.getGroupRoles()) {
+							System.out.println(role.getRoleName()+": ");
+							for(Person person:role.getTeam()) {
+								System.out.print(person.getName()+" ");
+							}
+						}
+					}
+					if(answer.equals("6")) {
+						group.setAvailability();
+						System.out.println(group.getFreeSch().toString());
+					}
+					if(answer.equals("7")) {
+						group.deligate();
+						System.out.println("Print group structure to see");
+					}
+					if(answer.equals("8")) {
 						runninggroup=false;
 					}
 					else {
