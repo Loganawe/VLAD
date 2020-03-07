@@ -21,7 +21,7 @@ public class Schedule {
 	}
 	
 	//console input currently for the ArrayList<int[]>
-	public void addBusyManual() {
+	public void addBusyManual(int[] busytime) {
 		
 	}
 	

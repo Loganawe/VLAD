@@ -73,7 +73,8 @@ public class Group {
 	}
 	
 	//add another non-default role
-	public void addRole(Roles nRole) {
+	public void addRole(String rname, String rdesc) {
+		Roles nRole = new Roles(rname,rdesc);
 		groupRoles.add(nRole);
 	}
 	
