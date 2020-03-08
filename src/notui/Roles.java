@@ -48,7 +48,6 @@ public class Roles {
 	}
 
 	public String toString() {
-		return getRoleName() + ":" + getDesc() + "     Amount of people:" + getTeamSize();
+		return getRoleName();
 	}
-
 }

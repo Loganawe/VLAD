@@ -26,8 +26,9 @@ public class maintest {
 				boolean runninggroup = true;
 				
 				while(runninggroup=true){
+					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 					System.out.println("Group: " + gname);
-					System.out.println(group.getRoleMemberNames());
+					System.out.println(group.getGroupRoles());
 					
 					System.out.println("1. Add new role");
 					System.out.println("2. Remove role");
@@ -47,12 +48,12 @@ public class maintest {
 						String roledesc = input.nextLine();
 						group.addRole(rolename, roledesc);
 					}
-					if(command.equals("2")) {
+					else if(command.equals("2")) {
 						System.out.println("Enter role name: ");
 						String rolename = input.nextLine();
 						group.removeRole(rolename);
 					}
-					if(command.equals("3")) {
+					else if(command.equals("3")) {
 						System.out.println("Enter person name: ");
 						String name = input.nextLine();
 						Person person = new Person(name);
@@ -62,7 +63,7 @@ public class maintest {
 						if(membercommand.equals("y")) {
 							Schedule sch = new Schedule();
 							boolean schrunning = true;
-							while(schrunning=true) {
+							while(schrunning==true) {
 								System.out.print("Enter day (0=Sun / 6=Sat): ");
 								int day = input.nextInt();
 								System.out.print("Enter start time (9am = 900 / 1pm = 1300): ");
@@ -89,28 +90,30 @@ public class maintest {
 						}
 						group.addRoleMember(person, "Team Member");
 					}
-					if(answer.equals("4")) {
+					else if(command.equals("4")) {
 						System.out.println("Enter person name: ");
 						String name = input.nextLine();
 					}
-					if(answer.equals("5")) {
+					else if(command.equals("5")) {
 						System.out.println(group.getGroupName());
 						for(Roles role:group.getGroupRoles()) {
-							System.out.println(role.getRoleName()+": ");
+							System.out.println();
+							System.out.print(role.getRoleName()+": ");
 							for(Person person:role.getTeam()) {
-								System.out.print(person.getName()+" ");
+								System.out.print(person.getName()+", ");
 							}
 						}
+						System.out.println();
 					}
-					if(answer.equals("6")) {
+					else if(command.equals("6")) {
 						group.setAvailability();
 						System.out.println(group.getFreeSch().toString());
 					}
-					if(answer.equals("7")) {
+					else if(command.equals("7")) {
 						group.deligate();
 						System.out.println("Print group structure to see");
 					}
-					if(answer.equals("8")) {
+					else if(command.equals("8")) {
 						runninggroup=false;
 					}
 					else {
