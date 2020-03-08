@@ -84,8 +84,7 @@ public class maintest {
 						System.out.println("Do you want to add roles? (y)/(n) ");
 						membercommand = input.nextLine();
 						if(membercommand.equals("y")) {
-							Attribute attr = new Attribute();
-							attr.takeTest();
+							Attribute attr = new Attribute(group);
 							person.setAttributes(attr);
 						}
 						group.addRoleMember(person, "Team Member");
