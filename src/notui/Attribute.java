@@ -35,5 +35,6 @@ public class Attribute {
 		scores.put(rName, score);
 		
 	}
+
 	
 }

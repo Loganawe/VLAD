@@ -85,7 +85,9 @@ public class maintest {
 						membercommand = input.nextLine();
 						if(membercommand.equals("y")) {
 							Attribute attr = new Attribute(group);
+							attr.takeQuiz()
 							person.setAttributes(attr);
+							
 						}
 						group.addRoleMember(person, "Team Member");
 					}
