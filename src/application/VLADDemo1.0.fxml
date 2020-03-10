@@ -100,7 +100,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1280.0">
                      <children>
-                        <VBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="670.0" prefWidth="183.0" spacing="5.0">
+                        <VBox alignment="CENTER" layoutX="-137.0" layoutY="14.0" prefHeight="670.0" prefWidth="250.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <VBox alignment="CENTER" spacing="5.0">
                                  <children>
@@ -108,8 +108,11 @@
                                        <font>
                                           <Font size="17.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
                                     </Label>
-                                    <ComboBox fx:id="peopleList" onAction="#reactToActivePeopleChange" prefHeight="25.0" prefWidth="218.0">
+                                    <ComboBox fx:id="peopleList" onAction="#reactToActivePeopleChange" prefHeight="25.0" prefWidth="989.0">
                                        <VBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </VBox.margin>
@@ -119,35 +122,56 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="608.0" prefWidth="183.0" spacing="5.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="97.0" prefWidth="148.0">
+                                    <VBox alignment="CENTER" prefHeight="97.0" prefWidth="148.0" spacing="5.0">
                                        <children>
-                                          <TextField fx:id="newPersonName" promptText="Enter New Person Name" />
+                                          <TextField fx:id="newPersonName" promptText="Enter New Person Name">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </VBox.margin></TextField>
                                           <Button fx:id="buttonNewPerson" mnemonicParsing="false" onAction="#reactToAddNewPerson" text="Add New Person" />
                                        </children>
-                                       <padding>
-                                          <Insets top="5.0" />
-                                       </padding>
                                     </VBox>
-                                    <Label alignment="CENTER" prefHeight="26.0" prefWidth="188.0" text="Busy Times:">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <ListView fx:id="busyTimes" prefHeight="570.0" prefWidth="200.0">
+                                    <VBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="26.0" prefWidth="188.0" text="Busy Times:">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <ListView fx:id="busyTimes" prefHeight="570.0" prefWidth="200.0">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </VBox.margin>
+                                          </ListView>
+                                          <Button fx:id="buttonRMBusyTime" alignment="CENTER" mnemonicParsing="false" onAction="#reactToRMBusyTime" text="Remove Time" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="104.0" prefWidth="149.0" spacing="5.0">
+                                 <children>
+                                    <TextField fx:id="newTimeDay" promptText="Day (0 ~ 7)">
                                        <VBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </VBox.margin>
-                                    </ListView>
+                                    </TextField>
+                                    <TextField fx:id="newTimeStart" promptText="Start Time">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="newTimeEnd" promptText="End Time">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button fx:id="buttonAddBusyTime" mnemonicParsing="false" onAction="#reactToAddBusyTime" text="Add Busy Time">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Button>
                                  </children>
                               </VBox>
-                           </children>
-                        </VBox>
-                        <VBox layoutX="398.0" layoutY="133.0" prefHeight="104.0" prefWidth="149.0">
-                           <children>
-                              <TextField fx:id="newTimeDay" promptText="Day (0 ~ 7)" />
-                              <TextField fx:id="newTimeStart" promptText="Start Time" />
-                              <TextField fx:id="newTimeEnd" promptText="End Time" />
-                              <Button fx:id="buttonAddBusyTime" mnemonicParsing="false" onAction="#reactToAddBusyTime" text="Add Busy Time Manually" />
                            </children>
                         </VBox>
                      </children>

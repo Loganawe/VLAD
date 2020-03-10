@@ -50,6 +50,9 @@ public class VladController {
     private ArrayList<String> listOfPotentialMembers = new ArrayList<String>();
     
     @FXML
+    private ArrayList<String> listOfGroupMembers = new ArrayList<String>();
+    
+    @FXML
     private ArrayList<Person> listOfPersons = new ArrayList<Person>();
 
     @FXML
@@ -68,10 +71,13 @@ public class VladController {
     private Person activePerson;
 
     @FXML
-    private ListView<int[]> busyTimes;
+    private ListView<String> busyTimes;
 
     @FXML
     private Button buttonAddBusyTime;
+    
+    @FXML
+    private Button buttonRMBusyTime;
     
     @FXML
     private Button buttonNewPerson;
@@ -108,6 +114,11 @@ public class VladController {
     }
     
     @FXML
+    void reactToRMBusyTime(ActionEvent event) {
+    	rmBusyTime();
+    }
+    
+    @FXML
     void reactToActiveGroupChange(ActionEvent event) {
     	changeActiveGroup();
     }
@@ -133,6 +144,7 @@ public class VladController {
     	}
     }
     
+    @FXML
     void updatePersonList() {
     	peopleList.getItems().clear();
     	for(Person pPerson : listOfPersons) {
@@ -143,15 +155,14 @@ public class VladController {
     
     @FXML
     void updateGroupMemberList() {
-    	// Populate potential group member list
-    	listOfPotentialMembers = activeGroup.getMemberNames();
-    	groupMembers.getItems().addAll(activeGroup.getMemberNames());
+    	listOfGroupMembers = new ArrayList<String>(activeGroup.getMemberNames());
+    	groupMembers.getItems().setAll(listOfGroupMembers);
     }
     
     @FXML
     void updatePotentialMemberList() {
-    	ArrayList<String> availablePotentialMembers = listOfPotentialMembers;
-    	for (String name : groupMembers.getItems()) {
+    	ArrayList<String> availablePotentialMembers = new ArrayList<String>(listOfPotentialMembers);
+    	for (String name : listOfGroupMembers) {
     		availablePotentialMembers.remove(name);
     	}
     	
@@ -160,53 +171,59 @@ public class VladController {
     
     @FXML
     void updateBusyTimeList() {
-    	listOfBusyTimes = activePerson.getSchedule().getTimes();
-    	busyTimes.getItems().addAll(activePerson.getSchedule().getTimes());
+    	listOfBusyTimes = new ArrayList<int[]>(activePerson.getSchedule().getTimes());
+    	busyTimes.getItems().clear();
+    	String availability = "";
+    	String[] weekdays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    	int i;
+    	for (int index = 0; index < listOfBusyTimes.size(); index++) {
+			i = listOfBusyTimes.get(index)[0] - 1;
+			availability = weekdays[i] + " " + listOfBusyTimes.get(index)[1] + " - " + listOfBusyTimes.get(index)[2];
+			System.out.println(availability);
+			busyTimes.getItems().add(availability);
+		}
+    	System.out.println(availability);
     }
     
     @FXML
     void addMemberToGroup() {
-    	ArrayList<String> membersToAdd = new ArrayList<String>();
     	
-    	ObservableList selectedMembers = potentialMembers.getSelectionModel().getSelectedItems();
+    	ObservableList<String> selectedMembers;
+    	selectedMembers = potentialMembers.getSelectionModel().getSelectedItems();
     	
-    	for (Object name : selectedMembers) {
-    		membersToAdd.add(name.toString());
-    	}
+    	// System.out.println("Selected members: " + selectedMembers);
     	
-
-    	groupMembers.getItems().addAll(membersToAdd);
+    	// groupMembers.getItems().addAll(selectedMembers);
     	
     	int index;
-    	for (String name : membersToAdd) {
+    	for (String name : selectedMembers) {
     		index = listOfPotentialMembers.indexOf(name);
     		Person human = listOfPersons.get(index);
     		activeGroup.addRoleMember(human, "Team Member");
     	}
     	
-    	updatePotentialMemberList();
     	updateGroupMemberList();
+    	updatePotentialMemberList();
+    	
+    	System.out.println("Group members are: " + groupMembers.getItems());
+    	System.out.println("Actual members are: " + activeGroup.getMemberNames());
     }
     
     @FXML
     void rmMemberFromGroup() {
-    	ArrayList<String> membersToRM  = new ArrayList<String>();
     	
-    	ObservableList selectedMembers = groupMembers.getSelectionModel().getSelectedItems();
-    	
-    	for (Object name : selectedMembers) {
-    		membersToRM.add(name.toString());
-    	}
+    	ObservableList<String> selectedMembers;
+    	selectedMembers = groupMembers.getSelectionModel().getSelectedItems();
     	
     	int index;
-    	for (String name : membersToRM) {
+    	for (String name : selectedMembers) {
     		index = listOfPotentialMembers.indexOf(name);
     		Person human = listOfPersons.get(index);
-    		activeGroup.getGroupRoles().get(-1).removeMember(human);
+    		activeGroup.rmRoleMember(human, "Team Member");
     	}
     	
-    	updatePotentialMemberList();
     	updateGroupMemberList();
+    	updatePotentialMemberList();
     }
     
     @FXML
@@ -226,9 +243,11 @@ public class VladController {
     		Schedule newSchedule = new Schedule();
     		newPerson.setSchedule(newSchedule);
     		listOfPersons.add(newPerson);
+    		listOfPotentialMembers.add(newPerson.getName());
     		newPersonName.clear();
     	}
     	updatePersonList();
+    	updatePotentialMemberList();
     }
     
     @FXML
@@ -245,22 +264,31 @@ public class VladController {
     void changeActivePerson() {
     	int index = peopleList.getItems().indexOf(peopleList.getValue());
     	activePerson = listOfPersons.get(index);
-    	System.out.println(activePerson.getName());
     	
     	updateBusyTimeList();
     }
     
     @FXML
     void addNewBusyTime() {
-    	if (!(newTimeDay.getText().equals(""))&&!(newTimeDay.getText().equals(""))&&!(newTimeDay.getText().equals(""))){
-    		int[] busyTime = new int[]{Integer.parseInt(newTimeDay.getText()),Integer.parseInt(newTimeStart.getText()),Integer.parseInt(newTimeEnd.getText())};
-    		Schedule sch = activePerson.getSchedule();
+    	if (!(newTimeDay.getText().equals("")) && !(newTimeStart.getText().equals("")) && !(newTimeEnd.getText().equals("")) ){
+    		int day = Integer.parseInt(newTimeDay.getText());
+    		int startTime = Integer.parseInt(newTimeStart.getText());
+    		int endTime = Integer.parseInt(newTimeEnd.getText());
+    		newTimeDay.clear();
+    		newTimeStart.clear();
+    		newTimeEnd.clear();
+    		int[] busyTime = {day, startTime, endTime};
+    		Schedule sch = new Schedule(activePerson.getSchedule());
     		sch.addBusyManual(busyTime);
     		activePerson.setSchedule(sch);
-    		System.out.println(sch.toString());
+    		updateBusyTimeList();
     	}
-    	updateBusyTimeList();
     
+    }
+    
+    @FXML
+    void rmBusyTime() {
+    	
     }
 
 }
