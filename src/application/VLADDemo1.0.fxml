@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.VladController">
+   <top>
+      <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+            <Tab text="Make Group">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="266.0" layoutY="165.0" text="Welcome to VLAD: an efficient group organizer" textAlignment="CENTER">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="501.0" layoutY="264.0" text="Please enter your groups name:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="506.0" layoutY="311.0" prefHeight="25.0" prefWidth="273.0" />
+                        <Button layoutX="617.0" layoutY="346.0" mnemonicParsing="false" text="Submit" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Group(s)">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1280.0">
+                     <children>
+                        <VBox alignment="CENTER" layoutY="4.0" prefHeight="696.0" prefWidth="183.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="0.0" prefWidth="183.0" text="Select Group:">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox fx:id="groupList">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </ChoiceBox>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="26.0" prefWidth="188.0" text="Add Members:">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="potentialMembers" prefHeight="570.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </ListView>
+                                    <Button fx:id="buttonAddMember" mnemonicParsing="false" onAction="#reactToAddMember" text="Add Member" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" layoutX="10.0" layoutY="66.0" spacing="5.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="26.0" prefWidth="188.0" text="Group Members:">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="groupMembers" prefHeight="570.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </ListView>
+                                    <Button fx:id="buttonRMMember" mnemonicParsing="false" onAction="#reactToRMMember" text="Remove Member" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="People">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1280.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="680.0" layoutY="104.0" text="PERSONO TESO">
+                           <font>
+                              <Font size="73.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </top>
+</BorderPane>
