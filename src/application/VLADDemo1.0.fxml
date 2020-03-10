@@ -92,6 +92,7 @@
                               </VBox>
                            </children>
                         </VBox>
+                        <Button fx:id="buttonPrintGroupSchedule" layoutX="648.0" layoutY="265.0" mnemonicParsing="false" onAction="#reactToPrintGroupSchedule" text="print schedule" />
                      </children>
                   </AnchorPane>
             </content>

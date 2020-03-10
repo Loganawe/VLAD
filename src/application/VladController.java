@@ -86,6 +86,9 @@ public class VladController {
     private Button buttonRmCurrentPerson;
     
     @FXML
+    private Button buttonPrintGroupSchedule;
+    
+    @FXML
     private ArrayList<int[]> listOfBusyTimes = new ArrayList<int[]>();
 
     @FXML
@@ -126,6 +129,11 @@ public class VladController {
     @FXML
     void reactToActivePeopleChange(ActionEvent event) {
     	changeActivePerson();
+    }
+    
+    @FXML
+    void reactToPrintGroupSchedule(ActionEvent event) {
+    	printGroupSchedule();
     }
     
     @FXML
@@ -179,10 +187,9 @@ public class VladController {
     	for (int index = 0; index < listOfBusyTimes.size(); index++) {
 			i = listOfBusyTimes.get(index)[0] - 1;
 			availability = weekdays[i] + " " + listOfBusyTimes.get(index)[1] + " - " + listOfBusyTimes.get(index)[2];
-			System.out.println(availability);
 			busyTimes.getItems().add(availability);
 		}
-    	System.out.println(availability);
+
     }
     
     @FXML
@@ -206,7 +213,6 @@ public class VladController {
     	updatePotentialMemberList();
     	
     	System.out.println("Group members are: " + groupMembers.getItems());
-    	System.out.println("Actual members are: " + activeGroup.getMemberNames());
     }
     
     @FXML
@@ -254,7 +260,6 @@ public class VladController {
     void changeActiveGroup() {
     	int index = groupList.getItems().indexOf(groupList.getValue());
     	activeGroup = listOfGroups.get(index);
-    	System.out.println("The current group is: " + activeGroup.getGroupName());
     	
     	updateGroupMemberList();
     	updatePotentialMemberList();
@@ -289,6 +294,13 @@ public class VladController {
     @FXML
     void rmBusyTime() {
     	
+    }
+    
+    @FXML
+    void printGroupSchedule() {
+    	activeGroup.setAvailability();
+    	activeGroup.getFreeSch().toString();
+    	System.out.println(activeGroup.toString());
     }
 
 }
