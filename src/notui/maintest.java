@@ -87,7 +87,8 @@ public class maintest {
 							Attribute attr = new Attribute(group);
 							attr.takeQuiz()
 							person.setAttributes(attr);
-							
+
+							attr.takeTest(name, group, person);				
 						}
 						group.addRoleMember(person, "Team Member");
 					}
