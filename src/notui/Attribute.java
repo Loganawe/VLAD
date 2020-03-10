@@ -1,73 +1,66 @@
 package notui;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 public class Attribute {
 	
-	//keep these as is or turn into a list of int and just remember the order of score
-	int leaderscore;
-	int organscore;
-	int finscore;
-	int impscore;
+	private Map<String, Integer> scores = new HashMap<String, Integer>();
+	
+	public Attribute(Group group) {
+		
+		for(Roles role: group.getGroupRoles()){
+			scores.put(role.getRoleName(), 0);
+		}
+		
+	}
+	
+	public Attribute(Attribute attribute) {
+		this.scores = attribute.scores;
+	}
+	
+	public Map<String, Integer> getScores(){
+		return scores;
+		
+	}
+	
+	public int getScore(String rolename) {
+		
+		return scores.get(rolename);
+		
+	}
+	
+	public void setScore(String rolename, int score) {
+		
+		scores.remove(rolename);
+		scores.put(rolename, score);
+		
+	}
 
-	//setters to be used in takeTest()
-	public void setLeaderScore(int point) {
-		leaderscore = leaderscore + point;
- }
-	public Attribute() {
+	
+	public void takeTest(String name, Group group, Person person)
+	{
+		Scanner input = new Scanner(System.in);
 		
+
+		for(Roles rolename:group.getGroupRoles())
+		{
+			if(rolename.getRoleName() != "Team Member")
+			{
+				System.out.println("How much do you want to be a " + rolename + "(Out of 5)");
+				int answer = input.nextInt();	
+				
+				if (answer <= 5)
+					{
+						setScore(rolename.getRoleName(), answer + getScore(rolename.getRoleName()));
+					}
+				if (getScore(rolename.getRoleName()) >=5)
+				{
+					group.addRoleMember(person, rolename.getRoleName());
+				}
+			}
+		}
 	}
 	
-	public Attribute(Attribute aAttribute) {
-		
-	}
-	
-	public void setLeaderScore(){
-		
-	}
-	
-	public void setOrganScore(int point) 	
-	{
-		organscore = organscore + point;
-	}
-	
-	public void setFinScore(int point) 
-	{
-		finscore = finscore + point;
-	}
-	
-	public void setImpScore(int point) 
-	{
-		impscore = impscore + point;
-	}
-	
-	//getters to be used in public class Group deligate() and in takeTest()
-	public int getLeaderScore() 
-	{
-		return leaderscore;
-	}
-	
-	public int getOrganScore() 
-	{
-		return organscore;
-	}
-	
-	public int getFinScore() 
-	{
-		return finscore;
-	}
-	
-	public int getImpScore() 
-	{
-		return impscore;
-	}
-	
-	//the test taking code, working in progress questions
-	public void takeTest() {
-		
-	}
-	
-	//so we can fully run a console only version of the program
-	public String toString() 
-	{
-		return "Ls: "+ leaderscore + " Os: "+ organscore + " Fs: "+ finscore+ " Ims: "+ impscore;
-	}
 }

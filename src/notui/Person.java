@@ -5,7 +5,7 @@ public class Person {
 
 	private String name;
 	private Schedule schedule = new Schedule();
-	private Attribute attributes = new Attribute();
+	//private Attribute attributes = new Attribute();
 	
 	public Person(String aName) {
 		name = aName;
