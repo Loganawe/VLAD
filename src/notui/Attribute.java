@@ -37,6 +37,7 @@ public class Attribute {
 		scores.put(rolename, score);
 		
 	}
+
 	
 	public void takeTest(String name, Group group, Person person)
 	{
