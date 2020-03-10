@@ -100,11 +100,56 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1280.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="680.0" layoutY="104.0" text="PERSONO TESO">
-                           <font>
-                              <Font size="73.0" />
-                           </font>
-                        </Label>
+                        <VBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="670.0" prefWidth="183.0" spacing="5.0">
+                           <children>
+                              <VBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="0.0" prefWidth="183.0" text="Select Person:">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="peopleList" onAction="#reactToActivePeopleChange" prefHeight="25.0" prefWidth="218.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Button fx:id="buttonRmCurrentPerson" mnemonicParsing="false" text="Remove Current Person" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="608.0" prefWidth="183.0" spacing="5.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="97.0" prefWidth="148.0">
+                                       <children>
+                                          <TextField fx:id="newPersonName" promptText="Enter New Person Name" />
+                                          <Button fx:id="buttonNewPerson" mnemonicParsing="false" onAction="#reactToAddNewPerson" text="Add New Person" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                    <Label alignment="CENTER" prefHeight="26.0" prefWidth="188.0" text="Busy Times:">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="busyTimes" prefHeight="570.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </ListView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="398.0" layoutY="133.0" prefHeight="104.0" prefWidth="149.0">
+                           <children>
+                              <TextField fx:id="newTimeDay" promptText="Day (0 ~ 7)" />
+                              <TextField fx:id="newTimeStart" promptText="Start Time" />
+                              <TextField fx:id="newTimeEnd" promptText="End Time" />
+                              <Button fx:id="buttonAddBusyTime" mnemonicParsing="false" onAction="#reactToAddBusyTime" text="Add Busy Time Manually" />
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
             </content>

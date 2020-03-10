@@ -22,7 +22,7 @@ public class Schedule {
 	
 	//console input currently for the ArrayList<int[]>
 	public void addBusyManual(int[] busytime) {
-		
+		busyTimes.add(busytime);
 	}
 	
 	//in-case of manual mistake
