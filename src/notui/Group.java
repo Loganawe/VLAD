@@ -88,8 +88,8 @@ public class Group {
 		groupRoles.remove(indexOfRole(rName));
 	}
 	
-	public boolean checkDayExist(int[] time) {
-		ArrayList<int[]> groupAvailability = new ArrayList<int[]>(freeSch.getTimes());
+	public boolean checkDayExist(int[] time, ArrayList<int[]> schedule) {
+		ArrayList<int[]> groupAvailability = new ArrayList<int[]>(schedule);
 		ArrayList<Integer> whichDays = new ArrayList<Integer>();
 		for (int[] index: groupAvailability) {
 			if (time[0] == index[0]) {
@@ -112,7 +112,7 @@ public class Group {
 				// do nothing
 				System.out.println("Same already exists");
 			}
-			else if (checkDayExist(times.get(i))) {
+			else if (checkDayExist(times.get(i), groupAvailability)) {
 				
 				int secondNumberOftimes = groupAvailability.size();
 				for (int index = 0; index < secondNumberOftimes; index++) {
@@ -127,7 +127,7 @@ public class Group {
 							// do nothing
 							System.out.println("smaller than old");
 						}
-						else if (times.get(i)[1] < groupAvailability.get(index)[1] && times.get(i)[2] <= groupAvailability.get(index)[1] ) {
+						else if (times.get(i)[1] < groupAvailability.get(index)[1] && times.get(i)[2] >= groupAvailability.get(index)[1] ) {
 							groupAvailability.get(index)[1] = times.get(i)[1];
 							System.out.println("starts before, but is during");
 						}

@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import notui.Group;
 import notui.Person;
@@ -72,6 +73,9 @@ public class VladController {
 
     @FXML
     private ListView<String> busyTimes;
+    
+    @FXML
+    private TextArea displaySchedule;
 
     @FXML
     private Button buttonAddBusyTime;
@@ -293,6 +297,18 @@ public class VladController {
     
     @FXML
     void rmBusyTime() {
+    	ObservableList<String> selectedBusyTimes;
+    	selectedBusyTimes = busyTimes.getSelectionModel().getSelectedItems();
+    	
+    	int index;
+    	for (String stringTime : selectedBusyTimes) {
+    		index = busyTimes.getItems().indexOf(stringTime);
+    		int[] busyAt = activePerson.getSchedule().getTimes().get(index);
+    		Schedule sch = new Schedule(activePerson.getSchedule());
+    		sch.removeBusy(busyAt);
+    		activePerson.setSchedule(sch);
+    		updateBusyTimeList();
+    	}
     	
     }
     
@@ -301,6 +317,8 @@ public class VladController {
     	activeGroup.setAvailability();
     	activeGroup.getFreeSch().toString();
     	System.out.println(activeGroup.toString());
+    	
+    	displaySchedule.setText(activeGroup.toString());
     }
 
 }
