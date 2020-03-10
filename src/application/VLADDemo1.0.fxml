@@ -7,6 +7,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -175,6 +177,18 @@
                               </VBox>
                            </children>
                         </VBox>
+                        <TableView fx:id="schView" layoutX="308.0" layoutY="35.0" prefHeight="496.0" prefWidth="958.0">
+                          <columns>
+                            <TableColumn fx:id="sunColView" prefWidth="125.0" text="Sunday" />
+                            <TableColumn fx:id="monColView" minWidth="0.0" prefWidth="125.0" text="Monday" />
+                              <TableColumn fx:id="tueColView" minWidth="8.0" prefWidth="125.0" text="Tuesday" />
+                              <TableColumn fx:id="wenColView" prefWidth="125.0" text="Wensday" />
+                              <TableColumn fx:id="thuColView" prefWidth="125.0" text="Thursday" />
+                              <TableColumn fx:id="friColView" prefWidth="125.0" text="Friday" />
+                              <TableColumn fx:id="satColView" prefWidth="125.0" text="Saterday" />
+                              <TableColumn fx:id="timeColView" prefWidth="75.0" text="Times" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
             </content>
