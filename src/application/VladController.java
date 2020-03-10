@@ -10,6 +10,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import notui.Group;
 import notui.Person;
 import notui.Schedule;
@@ -90,6 +92,33 @@ public class VladController {
     
     @FXML
     private ArrayList<int[]> listOfBusyTimes = new ArrayList<int[]>();
+    
+    @FXML
+    private TableView<?> schView;
+
+    @FXML
+    private TableColumn<?, ?> sunColView;
+
+    @FXML
+    private TableColumn<?, ?> monColView;
+
+    @FXML
+    private TableColumn<?, ?> tueColView;
+
+    @FXML
+    private TableColumn<?, ?> wenColView;
+
+    @FXML
+    private TableColumn<?, ?> thuColView;
+
+    @FXML
+    private TableColumn<?, ?> friColView;
+
+    @FXML
+    private TableColumn<?, ?> satColView;
+    
+    @FXML
+    private TableColumn<?, ?> timeColView;
 
     @FXML
     void reactToAddMember(ActionEvent event) {
