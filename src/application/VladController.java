@@ -14,12 +14,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import notui.Group;
 import notui.Person;
+import notui.Roles;
 import notui.Schedule;
 
 public class VladController {
 
 	@FXML
     private TextField newGroupName;
+	
+	@FXML
+    private TextField newRoleName;
 	
 	@FXML
 	private TextField newPersonName;
@@ -55,13 +59,22 @@ public class VladController {
     private ArrayList<String> listOfGroupMembers = new ArrayList<String>();
     
     @FXML
+    private ArrayList<String> listOfRoles = new ArrayList<String>();
+    
+    @FXML
     private ArrayList<Person> listOfPersons = new ArrayList<Person>();
 
     @FXML
     private Button buttonAddMember;
 
     @FXML
+    private Button buttonAddRole;
+    
+    @FXML
     private ListView<String> groupMembers;
+    
+    @FXML
+    private ListView<String> roles;
 
     @FXML
     private Button buttonRMMember;
@@ -124,7 +137,13 @@ public class VladController {
     void reactToAddMember(ActionEvent event) {
     	addMemberToGroup();
     }
-
+    
+    @FXML
+    void reactToAddRole(ActionEvent event) 
+    {
+    	addNewRole();
+    }
+    
     @FXML
     void reactToRMMember(ActionEvent event) {
     	rmMemberFromGroup();
@@ -170,6 +189,7 @@ public class VladController {
     	potentialMembers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     	groupMembers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     	busyTimes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    	roles.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
     
     @FXML
@@ -194,6 +214,11 @@ public class VladController {
     void updateGroupMemberList() {
     	listOfGroupMembers = new ArrayList<String>(activeGroup.getMemberNames());
     	groupMembers.getItems().setAll(listOfGroupMembers);
+    }
+    
+    void updateRoleList()
+    {
+    	roles.getItems().setAll(listOfRoles);
     }
     
     @FXML
@@ -270,6 +295,18 @@ public class VladController {
     	}
     	updateGroupList();
     }
+    //basically the code we can use to add the roles we want
+    @FXML
+    void addNewRole() {
+    	if (!(newRoleName.getText().equals(""))) {
+    		String newRole = newRoleName.getText();
+    		listOfRoles.add(newRole);
+    		newRoleName.clear();
+    	}
+    	updateRoleList();
+    }
+    
+    
     
     @FXML
     void addNewPerson() {
