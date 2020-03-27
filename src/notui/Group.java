@@ -40,11 +40,7 @@ public class Group {
 	}
 	
 	public int getGroupSize() {
-		int numMembers = 0;
-		for (Roles role: groupRoles) {
-			numMembers += role.getTeamSize();
-		}
-		return numMembers;
+		return getMemberNames().size();
 	}
 	
 	public ArrayList<ArrayList<String>> getRoleMemberNames () {
@@ -115,7 +111,7 @@ public class Group {
 		for (int i = 0; i < numbersOfTimes; i++) {
 			if (groupAvailability.contains(times.get(i))) {
 				// do nothing
-				//System.out.println("Same already exists");
+				System.out.println("Same already exists");
 			}
 			else if (checkDayExist(times.get(i))) {
 				
@@ -126,23 +122,23 @@ public class Group {
 						if (times.get(i)[1] <= groupAvailability.get(index)[1] && times.get(i)[2] >= groupAvailability.get(index)[2] ) {
 							groupAvailability.get(index)[1] = times.get(i)[1];
 							groupAvailability.get(index)[2] = times.get(i)[2];
-							//System.out.println("bigger than old");
+							System.out.println("bigger than old");
 						}
 						else if (times.get(i)[1] >= groupAvailability.get(index)[1] && times.get(i)[2] <= groupAvailability.get(index)[2] ) {
 							// do nothing
-							//System.out.println("smaller than old");
+							System.out.println("smaller than old");
 						}
-						else if (times.get(i)[1] < groupAvailability.get(index)[1] && times.get(i)[2] >= groupAvailability.get(index)[1] ) {
+						else if (times.get(i)[1] < groupAvailability.get(index)[1] && times.get(i)[2] <= groupAvailability.get(index)[1] ) {
 							groupAvailability.get(index)[1] = times.get(i)[1];
-							//System.out.println("starts before, but is during");
+							System.out.println("starts before, but is during");
 						}
 						else if (times.get(i)[1] <= groupAvailability.get(index)[2] && times.get(i)[2] > groupAvailability.get(index)[2] ) {
 							groupAvailability.get(index)[2] = times.get(i)[2];
-							//System.out.println("ends after, but is during");
+							System.out.println("ends after, but is during");
 						}
 						else if (times.get(i)[2] < groupAvailability.get(index)[1] || times.get(i)[1] > groupAvailability.get(index)[2] ) {
 							groupAvailability.add(times.get(i));
-							//System.out.println("Same day, but not same or overlapping times");
+							System.out.println("Same day, but not same or overlapping times");
 						}
 					}
 

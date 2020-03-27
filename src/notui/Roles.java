@@ -28,7 +28,7 @@ public class Roles {
 	}
 	
 	public ArrayList<Person> getTeam(){
-		return team;
+		return new ArrayList<Person>(team);
 	}
 	
 	public String getDesc() {

@@ -13,7 +13,7 @@ public class Schedule {
 	
 	
 	public Schedule(Schedule aSchedule) {
-		
+		busyTimes = new ArrayList<int[]>(aSchedule.getTimes());
 	}
 	//dont need to add this one yet, we havnt looked at the libary
 	public void addBusyAuto() {
@@ -21,13 +21,13 @@ public class Schedule {
 	}
 	
 	//console input currently for the ArrayList<int[]>
-	public void addBusyManual(int[] busytime) {
-		busyTimes.add(busytime);
+	public void addBusyManual(int[] busyTime) {
+		busyTimes.add(busyTime);
 	}
 	
 	//in-case of manual mistake
-	public void removeBusy() {
-		
+	public void removeBusy(int[] busyTime) {
+		busyTimes.remove(busyTime);
 	}
 	
 	public ArrayList<int[]> getTimes() {
