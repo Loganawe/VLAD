@@ -1,11 +1,25 @@
 package notui;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Quiz.
+ */
 public class Quiz {
-
-	for(String rolename:group.getRoleNames)
-		
-		system.out.print("Hey do you want to be a" + rolename + "?")
-		
+	
+	/** The currentrole. */
+	Roles currentrole;
+	
+	/** The score. */
+	int score;
+	
+	/**
+	 * Runquiz.
+	 *
+	 * @return the int
+	 */
+	public int runquiz() {
+		return 0;
+	}
 	
 	
 }

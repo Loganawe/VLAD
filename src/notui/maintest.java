@@ -85,7 +85,7 @@ public class maintest {
 						membercommand = input.nextLine();
 						if(membercommand.equals("y")) {
 							Attribute attr = new Attribute(group);
-							attr.takeQuiz()
+							new Quiz();
 							person.setAttributes(attr);
 
 							attr.takeTest(name, group, person);				
